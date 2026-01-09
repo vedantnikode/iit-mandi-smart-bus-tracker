@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IIT Mandi – Bus Schedule</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    h2, h3 {
+      margin-top: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background: #1a73e8;
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+
+    tr.today {
+      background-color: #e8f5e9;
+      font-weight: bold;
+    }
+
+    tr.fade {
+      opacity: 0.4;
+    }
+
+    .status-upcoming {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .status-missed {
+      color: red;
+      font-weight: bold;
+    }
+
+    .banner {
+      font-weight: bold;
+      color: #1a73e8;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    input {
+      padding: 8px;
+      width: 260px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      font-weight: bold;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN CHECK -->
+<script>
+  if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "login.html";
+  }
+</script>
+
+<h2>Overall Bus Schedule – IIT Mandi</h2>
+
+<p id="liveDateTime"></p>
+
+<p class="banner" id="nextBus">Calculating next bus...</p>
+
+<input
+  type="text"
+  id="searchInput"
+  placeholder="Search bus / route / time..."
+>
+
+<!-- ================= WEEKDAY NORTH-SOUTH ================= -->
+
+<h3>North ↔ South Campus (Monday–Friday)</h3>
+
+<table id="scheduleTable">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Vehicle</th>
+      <th>South → North</th>
+      <th>North → South</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus C & H</td><td>07:30</td><td>-</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus A & B</td><td>07:45</td><td>-</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus D & C</td><td>-</td><td>07:45</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus A</td><td>-</td><td>08:00</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus B</td><td>-</td><td>08:15</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus C</td><td>08:00</td><td>-</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus A</td><td>08:15</td><td>-</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus A & H</td><td>-</td><td>08:30</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus B & D</td><td>08:30</td><td>-</td><td></td></tr>
+    <tr data-day="Mon-Fri"><td>Mon–Fri</td><td>Bus D</td><td>-</td><td>08:45</td><td></td></tr>
+  </tbody>
+</table>
+
+<!-- ================= WEEKEND NORTH-SOUTH ================= -->
+
+<h3>North ↔ South Campus (Saturday, Sunday & Holidays)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Vehicle</th>
+      <th>South → North</th>
+      <th>North → South</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr data-day="Sat-Sun-Hol"><td>Sat, Sun & Hol</td><td>Bus A</td><td>07:45</td><td>-</td><td></td></tr>
+    <tr data-day="Sat-Sun-Hol"><td>Sat, Sun & Hol</td><td>Bus H</td><td>-</td><td>07:45</td><td></td></tr>
+    <tr data-day="Sat-Sun-Hol"><td>Sat, Sun & Hol</td><td>Bus B</td><td>-</td><td>08:15</td><td></td></tr>
+    <tr data-day="Sat-Sun-Hol"><td>Sat, Sun & Hol</td><td>Bus A</td><td>08:15</td><td>08:30</td><td></td></tr>
+  </tbody>
+</table>
+
+<!-- ================= MANDI ROUTE ================= -->
+
+<h3>Mandi ↔ Campus (via South Campus)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Vehicle</th>
+      <th>Mandi → North</th>
+      <th>South Campus</th>
+      <th>North → Mandi</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus A</td><td>07:00</td><td>07:45 →</td><td>-</td></tr>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus E</td><td>-</td><td>← 07:10</td><td>07:00</td></tr>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus F</td><td>10:00</td><td>10:45 →</td><td>-</td></tr>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus H</td><td>12:00</td><td>12:45 →</td><td>-</td></tr>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus F</td><td>19:00</td><td>19:45 →</td><td>-</td></tr>
+    <tr data-day="Mon-Sun-Hol"><td>Mon–Sun & Hol</td><td>Bus E</td><td>21:00</td><td>21:45 →</td><td>-</td></tr>
+  </tbody>
+</table>
+
+<br>
+<a href="index.html">Go to Live Bus Tracking →</a>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+  // Live date & time
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById("liveDateTime").innerText =
+      now.toLocaleDateString("en-IN", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      }) + " | " + now.toLocaleTimeString("en-IN");
+  }
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+
+  // Search filter
+  document.getElementById("searchInput").addEventListener("keyup", function () {
+    const val = this.value.toLowerCase();
+    document.querySelectorAll("tbody tr").forEach(row => {
+      row.style.display = row.innerText.toLowerCase().includes(val) ? "" : "none";
+    });
+  });
+
+  // Status & today highlight
+  const today = new Date().getDay(); // 0=Sun
+  document.querySelectorAll("tbody tr").forEach(row => {
+    const timeCell = row.cells[2];
+    if (!timeCell || timeCell.innerText === "-") return;
+
+    const [h,m] = timeCell.innerText.replace("→","").replace("←","").trim().split(":");
+    const busTime = new Date();
+    busTime.setHours(h,m,0);
+
+    const now = new Date();
+    const statusCell = row.cells[row.cells.length - 1];
+
+    if (busTime > now) {
+      statusCell.innerText = "Upcoming";
+      statusCell.className = "status-upcoming";
+    } else {
+      statusCell.innerText = "Missed";
+      statusCell.className = "status-missed";
+    }
+  });
+
+  // Next bus banner (simple demo)
+  function nextBus() {
+    const now = new Date();
+    const times = ["07:30","07:45","08:15","08:30"];
+    for (let t of times) {
+      const [h,m] = t.split(":");
+      const bt = new Date();
+      bt.setHours(h,m,0);
+      if (bt > now) {
+        document.getElementById("nextBus").innerText =
+          `🚌 Next Bus in ${Math.round((bt-now)/60000)} minutes`;
+        return;
+      }
+    }
+    document.getElementById("nextBus").innerText = "🚌 No more buses today";
+  }
+  nextBus();
+</script>
+
+</body>
+</html>

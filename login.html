@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IIT Mandi Login</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      background: #1a73e8;
+      color: white;
+      border: none;
+    }
+    .error { color:red; }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>IIT Mandi Login</h2>
+    <input type="email" id="email" placeholder="College Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p class="error" id="error"></p>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!email.endsWith("@iitmandi.ac.in")) {
+        document.getElementById("error").innerText =
+          "Use IIT Mandi email only";
+        return;
+      }
+      if (password.length < 4) {
+        document.getElementById("error").innerText =
+          "Invalid password";
+        return;
+      }
+
+      sessionStorage.setItem("loggedIn", "true");
+      window.location.href = "schedule.html";
+    }
+  </script>
+</body>
+</html>
