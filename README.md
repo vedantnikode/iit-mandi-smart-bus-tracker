@@ -123,7 +123,9 @@ GPS Device → Cloud Backend → Website → Student
 
 ## System Architecture
 
-![Architecture](assets/diagrams/architecture.png)
+![Architecture](assets/diagrams/architecture1.png)
+![](assets/diagrams/architecture2.png)
+
 
 ## 🎯 Hackathon Context
 
