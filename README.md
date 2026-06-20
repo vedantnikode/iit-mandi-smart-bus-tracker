@@ -114,11 +114,13 @@ GPS Device → Cloud Backend → Website → Student
 
 ### Schedule Dashboard
 
-![Schedule Dashboard](assets/screenshots/schedule-page.png)
+![Schedule Dashboard](assets/screenshots/schedule-page1.png) ![](assets/screenshots/schedule-page2.png)
 
 ### Live Tracking
 
 ![Live Tracking](assets/screenshots/tracking-page.png)
+![](assets/screenshots/tracking-page11.png)
+
 
 ## 🎯 Hackathon Context
 
