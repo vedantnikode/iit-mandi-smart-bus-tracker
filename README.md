@@ -121,6 +121,9 @@ GPS Device → Cloud Backend → Website → Student
 ![Live Tracking](assets/screenshots/tracking-page1.png)
 ![](assets/screenshots/tracking-page11.png)
 
+## System Architecture
+
+![Architecture](assets/diagrams/architecture.png)
 
 ## 🎯 Hackathon Context
 
