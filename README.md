@@ -108,7 +108,17 @@ GPS Device → Cloud Backend → Website → Student
 
 ## 📷 Screenshots
 
-(Add screenshots here)
+### Login Page
+
+![Login Page](assets/screenshots/login-page.png)
+
+### Schedule Dashboard
+
+![Schedule Dashboard](assets/screenshots/schedule-page.png)
+
+### Live Tracking
+
+![Live Tracking](assets/screenshots/tracking-page.png)
 
 ## 🎯 Hackathon Context
 
