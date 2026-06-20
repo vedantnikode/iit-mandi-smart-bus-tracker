@@ -127,6 +127,35 @@ GPS Device → Cloud Backend → Website → Student
 ![](assets/diagrams/architecture2.png)
 
 
+## 🚧 Project Status
+
+Current Stage: MVP (Minimum Viable Product)
+
+Implemented:
+- Schedule Digitization
+- Route Information
+- Simulated Bus Tracking
+- Search & Filter Functionality
+
+Planned:
+- Firebase Integration
+- Real-Time GPS Tracking
+- Google Maps Integration
+- AI-Based Delay Prediction
+
+
+## 🎯 Motivation
+
+Students frequently travel between North Campus,
+South Campus, and Mandi Town.
+
+Due to the absence of a real-time tracking system,
+students often face uncertainty regarding bus arrival times
+and delays.
+
+This project aims to digitize schedules and provide a
+foundation for future live bus tracking.
+
 ## 🎯 Hackathon Context
 
 Developed as part of the GDG on Campus TechSprint Hackathon under the Open Innovation theme.
